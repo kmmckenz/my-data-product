@@ -82,21 +82,56 @@ def log_step(step_name):
 
 # %%
 # option to upload url data
-try:
-    url = input("Enter the URL to load (.csv or .json): ").strip()
-    if url.endswith('.csv'):
-        df = pd.read_csv(url)
-        print(df)
-        print("Remember to update models to use 'url'")
-    elif url.endswith('.json'):
-        response = urlopen(url)
-        data = json.loads(response.read().decode('utf-8'))
-        print(data)
-        print("Remember to update models to use 'url'")
-    else:
-        print("Unsupported file format or no url entered.")
-except Exception as e:
-    print(f"An error occurred: {e}")
+from dash import Dash, html, dcc, Output, Input
+import pandas as pd
+import dash
+import json
+
+app = Dash(__name__)
+server = app.server
+
+app.layout = html.Div([
+    html.H1("Load Data from URL"),
+    dcc.Input(
+        id='url-input',
+        type='text',
+        placeholder='Enter the URL to load (.csv or .json)',
+        style={'width': '60%'}
+    ),
+    html.Button('Load', id='load-button'),
+    html.Div(id='data-output')
+])
+
+@app.callback(
+    Output('data-output', 'children'),
+    Input('load-button', 'n_clicks'),
+    dash.dependencies.State('url-input', 'value')
+)
+def load_data(n_clicks, url):
+    if not url:
+        return "Please enter a URL."
+
+    try:
+        if url.endswith('.csv'):
+            df = pd.read_csv(url)
+            return html.Div([
+                html.P("CSV loaded successfully."),
+                html.Pre(df.head().to_string())
+            ])
+        elif url.endswith('.json'):
+            df = pd.read_json(url)
+            return html.Div([
+                html.P("JSON loaded successfully."),
+                html.Pre(df.head().to_string())
+            ])
+        else:
+            return "Unsupported file type. Please enter a .csv or .json URL."
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
+
+if __name__ == "__main__":
+    app.run_server(debug=True)
+
 # for reading URL data
 
 # %% [markdown]
