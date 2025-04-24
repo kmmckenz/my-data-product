@@ -139,17 +139,17 @@ if __name__ == "__main__":
 
 # %%
 log_step("Loading Data")
-data_clean = pd.read_csv("C:/Users/User/Desktop/GCU/Grad/data_clean.csv")
-data_nomean_out = pd.read_csv("C:/Users/User/Desktop/GCU/Grad/data_nomean_out.csv")
-data_nomedian_out = pd.read_csv("C:/Users/User/Desktop/GCU/Grad/data_nomedian_out.csv")
-data_log = pd.read_csv("C:/Users/User/Desktop/GCU/Grad/data_log.csv")
+data_clean = pd.read_csv("data_clean.csv")
+data_nomean_out = pd.read_csv("data_nomean_out.csv")
+data_nomedian_out = pd.read_csv("data_nomedian_out.csv")
+data_log = pd.read_csv("data_log.csv")
 print("Data Loaded")
 #loads data and logs time
 #can replace path for different data
 
 # %%
 try:
-    data = pd.read_csv("C:/Users/User/Desktop/GCU/Grad/data_clean.csv")
+    data = pd.read_csv("data_clean.csv")
     assert not data.empty, "Loaded dataframe is empty."
     print("Data loaded successfully and is not empty.")
 except FileNotFoundError:

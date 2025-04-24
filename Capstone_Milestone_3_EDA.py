@@ -167,8 +167,8 @@ if __name__ == "__main__":
 
 # %%
 log_step("Loading Data")
-data_vaccine = pd.read_csv("C:/Users/User/Downloads/daily-covid-19-vaccine-doses-administered.csv")
-data_deaths = pd.read_csv("C:/Users/User/Downloads/daily-new-confirmed-covid-19-deaths-per-million-people.csv")
+data_vaccine = pd.read_csv("daily-covid-19-vaccine-doses-administered.csv")
+data_deaths = pd.read_csv("daily-new-confirmed-covid-19-deaths-per-million-people.csv")
 data = pd.merge(data_vaccine, data_deaths, on=['Entity', 'Day'], how='inner')
 print("Data Loaded")
 #loads data and logs time
@@ -176,8 +176,8 @@ print("Data Loaded")
 
 # %%
 try:
-    data_vaccine2 = pd.read_csv("C:/Users/User/Downloads/daily-covid-19-vaccine-doses-administered.csv")
-    data_deaths2 = pd.read_csv("C:/Users/User/Downloads/daily-new-confirmed-covid-19-deaths-per-million-people.csv")
+    data_vaccine2 = pd.read_csv("daily-covid-19-vaccine-doses-administered.csv")
+    data_deaths2 = pd.read_csv("daily-new-confirmed-covid-19-deaths-per-million-people.csv")
     data2 = pd.merge(data_vaccine2, data_deaths2, on=['Entity', 'Day'], how='inner')
     if 'data' in locals() and data2.equals(data):
         print("Test passed: Merged dataframe matches original.")
