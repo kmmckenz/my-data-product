@@ -1,0 +1,13 @@
+viola
+notebook
+pandas
+matplotlib
+seaborn
+statsmodels
+scipy
+numpy
+scikit-learn
+tensorflow
+graphviz
+dash
+plotly
