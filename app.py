@@ -3,7 +3,6 @@ from dash import Dash, html
 import base64
 
 # importing files
-import Capstone_Milestone_3_EDA
 import Capstone_Milestone_3_Poisson
 import Capstone_Milestone_3_Random_Forest
 import Capstone_Milestone_3_DNN
